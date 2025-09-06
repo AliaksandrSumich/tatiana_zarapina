@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "home": "Home",
+    "gallery": "Gallery",
+    "about": "About",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "title": "Tatyana Zarapina",
+    "subtitle": "Artist, Gdańsk",
+    "ctaGallery": "View gallery",
+    "ctaAbout": "About me",
+    "ctaContact": "Contact"
+  },
+  "featured": {
+    "title": "Selected works"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "filter": {
+      "all": "All",
+      "painting": "Painting",
+      "graphics": "Graphics",
+      "illustration": "Illustration"
+    }
+  },
+  "about": {
+    "title": "About",
+    "bio": "<p>My name is <strong>Tatyana Zarapina</strong>. I live and work in Gdańsk. I explore painting, graphics and illustration, focusing on minimal forms and color harmony.</p>",
+    "exhibitionsTitle": "Exhibitions & Achievements",
+    "exhibitions": "<ul><li>2024 — Group exhibition, Gdańsk</li><li>2023 — Personal project publication</li><li>2022 — Local art fair participation</li></ul>",
+    "educationTitle": "Education",
+    "education": "<p>Art courses and continuous self-education. Open to collaborations and exhibitions.</p>"
+  },
+  "contact": {
+    "title": "Contacts",
+    "email": "Email",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Write your message...",
+      "send": "Send",
+      "note": "This is a static site. Sending opens your email app.",
+      "validation": "Please fill in all fields.",
+      "subject": "Portfolio contact"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

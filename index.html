@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tatyana Zarapina — Artist Portfolio</title>
+  <meta name="description" content="Portfolio of artist Tatyana Zarapina. Paintings, graphics, illustrations. Gdańsk." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preload" href="assets/css/styles.css" as="style" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎨</text></svg>">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tatyana Zarapina — Artist Portfolio" />
+  <meta property="og:description" content="Portfolio of artist Tatyana Zarapina. Paintings, graphics, illustrations. Gdańsk." />
+  <meta property="og:image" content="images/469164343_1945657102597064_8571453850520520843_n.jpg" />
+  <meta property="og:url" content="https://example.com/" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Tatyana Zarapina",
+    "jobTitle": "Artist",
+    "image": "images/469164343_1945657102597064_8571453850520520843_n.jpg",
+    "url": "https://example.com/",
+    "sameAs": [
+      "https://www.facebook.com/tatyana.zarapina/"
+    ],
+    "homeLocation": {
+      "@type": "Place",
+      "name": "Gdańsk, Poland"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="brand" aria-label="Homepage">TZ</a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#home" data-i18n="nav.home">Home</a>
+        <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#contact" data-i18n="nav.contacts">Contacts</a>
+      </nav>
+      <div class="lang-switch" aria-label="Language switcher">
+        <button class="lang-btn" data-lang="en" aria-label="Switch language to English">🇬🇧</button>
+        <button class="lang-btn" data-lang="pl" aria-label="Przełącz język na polski">🇵🇱</button>
+        <button class="lang-btn" data-lang="ru" aria-label="Переключить язык на русский">🇷🇺</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1 data-i18n="hero.title">Tatyana Zarapina</h1>
+        <p class="subtitle" data-i18n="hero.subtitle">Artist, Gdańsk</p>
+        <div class="hero-ctas">
+          <a href="gallery.html" class="btn" data-i18n="hero.ctaGallery">View gallery</a>
+          <a href="#about" class="btn ghost" data-i18n="hero.ctaAbout">About me</a>
+          <a href="#contact" class="btn ghost" data-i18n="hero.ctaContact">Contact</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="images/469164343_1945657102597064_8571453850520520843_n.jpg" alt="Portrait of artist Tatyana Zarapina" loading="lazy"/>
+      </div>
+    </div>
+
+    <section class="featured" aria-labelledby="featured-heading">
+      <div class="container">
+        <h2 id="featured-heading" class="reveal reveal-up" data-i18n="featured.title">Selected works</h2>
+        <div id="featured-grid" class="featured-grid" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <section id="about" class="about-section" aria-labelledby="about-heading">
+    <div class="container about-grid">
+      <div class="about-photo">
+        <img src="images/469164343_1945657102597064_8571453850520520843_n.jpg" alt="Tatyana Zarapina portrait" loading="lazy" />
+      </div>
+      <div class="about-content">
+        <h2 id="about-heading" data-i18n="about.title">About</h2>
+        <div data-i18n-html="about.bio">
+          Living and working in Gdańsk. Visual artist.
+        </div>
+        <h3 data-i18n="about.exhibitionsTitle">Exhibitions & Achievements</h3>
+        <div data-i18n-html="about.exhibitions"></div>
+        <h3 data-i18n="about.educationTitle">Education</h3>
+        <div data-i18n-html="about.education"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+    <div class="container">
+      <h2 id="contact-heading" data-i18n="contact.title">Contacts</h2>
+      <div class="contact-grid">
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="field">
+            <label for="name" data-i18n="contact.form.name">Name</label>
+            <input id="name" name="name" type="text" required data-i18n-placeholder="contact.form.namePlaceholder" placeholder="Your name" />
+          </div>
+          <div class="field">
+            <label for="email" data-i18n="contact.form.email">Email</label>
+            <input id="email" name="email" type="email" required data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="your@email.com" />
+          </div>
+          <div class="field">
+            <label for="message" data-i18n="contact.form.message">Message</label>
+            <textarea id="message" name="message" rows="5" required data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="Write your message..."></textarea>
+          </div>
+          <button class="btn" type="submit" data-i18n="contact.form.send">Send</button>
+          <p class="form-note" data-i18n="contact.form.note">This is a static site. Sending opens your email app.</p>
+        </form>
+        <div class="contact-info">
+          <ul class="social">
+            <li><a href="https://www.facebook.com/tatyana.zarapina/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a></li>
+          </ul>
+          <p><span data-i18n="contact.email">Email</span>: <a id="contact-email" href="#" rel="nofollow">—</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> <span data-i18n="hero.title">Tatyana Zarapina</span>. <span data-i18n="footer.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+
+  <!-- Lightbox Overlay -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lb-close" aria-label="Close">×</button>
+    <button class="lb-nav lb-prev" aria-label="Previous">‹</button>
+    <figure class="lb-figure">
+      <img id="lb-image" alt="" />
+      <figcaption id="lb-caption"></figcaption>
+    </figure>
+    <button class="lb-nav lb-next" aria-label="Next">›</button>
+  </div>
+
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
