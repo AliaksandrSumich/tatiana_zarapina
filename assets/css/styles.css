@@ -14,9 +14,10 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-  background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  /* Static muted background across all pages */
+  background: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('../../images/background.jpg') center / cover fixed no-repeat;
 }
 img { max-width: 100%; display: block; }
 a { color: var(--accent); text-decoration: none; }
@@ -44,6 +45,8 @@ a:hover { text-decoration: underline; }
 .hero-text h1 { font-size: 40px; margin: 0 0 8px; }
 .subtitle { color: var(--muted); margin: 0 0 16px; }
 .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+/* Show CTAs only on mobile */
+@media (min-width: 720px) { .hero-ctas { display: none !important; } }
 .hero-image { justify-self: center; width: 220px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
 .hero-image img { aspect-ratio: 1/1; object-fit: cover; }
 
@@ -91,7 +94,7 @@ a:hover { text-decoration: underline; }
 /* About */
 .about-section { padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .about-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-.about-photo { width: 240px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+.about-photo { width: 240px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: #fff; }
 .about-photo img { aspect-ratio: 1/1; object-fit: cover; }
 .about-content h2 { margin-top: 0; }
 
@@ -115,7 +118,7 @@ input, textarea { padding: 10px 12px; border-radius: 10px; border: 1px solid var
 }
 
 /* Footer */
-.site-footer { border-top: 1px solid var(--border); padding: 16px 0; color: var(--muted); font-size: 14px; }
+.site-footer { border-top: 1px solid var(--border); padding: 16px 0; color: var(--muted); font-size: 14px; background: rgba(255,255,255,0.7); }
 
 /* Lightbox */
 .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 100; color: #fff; }
