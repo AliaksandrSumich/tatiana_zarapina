@@ -1,15 +1,14 @@
-// Simple static i18n + gallery + lightbox + scroll reveal
+// Simple static i18n + gallery + lightbox + scroll reveal (no captions, no filters)
 (function(){
   const DEFAULT_LANG = 'en';
   const SUPPORTED = ['en','pl','ru'];
   const LS_LANG_KEY = 'tz_lang';
-  const CONTACT_EMAIL = 'your-email@example.com'; // TODO: set your contact email
+  const CONTACT_EMAIL = 'your-email@example.com'; // optional mailto for future use
 
   const state = {
     lang: DEFAULT_LANG,
     dict: {},
     artworks: [],
-    filter: 'all',
     lightboxIndex: -1,
     filteredIds: []
   };
@@ -22,18 +21,16 @@
   document.addEventListener('DOMContentLoaded', init);
 
   async function init(){
-    // year
     const yearEl = $('#year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // email link
+    // Optional email link if present
     const emailLink = $('#contact-email');
     if (emailLink) {
       emailLink.textContent = CONTACT_EMAIL === 'your-email@example.com' ? 'your-email@example.com' : CONTACT_EMAIL;
       emailLink.href = 'mailto:'+CONTACT_EMAIL;
     }
 
-    // setup reveals for any pre-marked elements (e.g. headings)
     setupReveals();
 
     // language from storage or browser
@@ -42,26 +39,13 @@
     if(!SUPPORTED.includes(initial)) initial = DEFAULT_LANG;
     await setLanguage(initial);
 
-    // listeners
+    // language buttons
     $$('.lang-btn').forEach(btn=>btn.addEventListener('click', async e=>{
       const lng = e.currentTarget.getAttribute('data-lang');
       await setLanguage(lng);
     }));
 
-    $$('.filters .chip').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        $$('.filters .chip').forEach(b=>{ b.classList.remove('is-active'); b.setAttribute('aria-selected','false');});
-        btn.classList.add('is-active');
-        btn.setAttribute('aria-selected','true');
-        state.filter = btn.getAttribute('data-filter');
-        renderGallery();
-      });
-    });
-
-    const contactForm = $('#contact-form');
-    if (contactForm) contactForm.addEventListener('submit', onSubmitContact);
-
-    // lightbox controls (optional if present)
+    // lightbox controls
     const lb = $('#lightbox');
     if (lb) {
       const lbClose = $('#lightbox .lb-close');
@@ -93,7 +77,6 @@
     localStorage.setItem(LS_LANG_KEY, lng);
     updateLangButtons();
     applyTranslations();
-    // re-render dynamic content in the new language
     if (state.artworks && state.artworks.length) {
       renderFeatured();
       renderGallery();
@@ -108,7 +91,7 @@
     });
   }
 
-  function t(key, fallback=''){ // dot notation
+  function t(key, fallback=''){
     const parts = key.split('.');
     let ref = state.dict;
     for(const p of parts){
@@ -118,17 +101,14 @@
   }
 
   function applyTranslations(){
-    // textContent
     $$('[data-i18n]').forEach(el=>{
       const key = el.getAttribute('data-i18n');
       el.textContent = t(key, el.textContent);
     });
-    // innerHTML
     $$('[data-i18n-html]').forEach(el=>{
       const key = el.getAttribute('data-i18n-html');
       el.innerHTML = t(key, el.innerHTML);
     });
-    // placeholders
     $$('[data-i18n-placeholder]').forEach(el=>{
       const key = el.getAttribute('data-i18n-placeholder');
       el.setAttribute('placeholder', t(key, el.getAttribute('placeholder')||''));
@@ -153,15 +133,10 @@
       const img = document.createElement('img');
       img.loading = 'lazy';
       img.src = art.filename;
-      img.alt = composeAlt(art);
-      const cap = document.createElement('div');
-      cap.className = 'featured-cap';
-      cap.textContent = composeCaption(art);
+      img.alt = genericAlt();
       card.appendChild(img);
-      card.appendChild(cap);
       wrap.appendChild(card);
     });
-    // animate heading too if present
     const heading = $('#featured-heading');
     if (heading && heading.classList.contains('reveal')) observeReveal(heading);
     refreshReveals();
@@ -169,9 +144,9 @@
 
   function renderGallery(){
     const wrap = $('#masonry');
-    if(!wrap) return; // not on this page
+    if(!wrap) return;
     wrap.innerHTML = '';
-    const list = state.artworks.filter(a=> state.filter==='all' ? true : a.category===state.filter);
+    const list = state.artworks.slice();
     state.filteredIds = list.map(a=>a.id);
     list.forEach((art, i)=>{
       const fig = document.createElement('figure');
@@ -183,16 +158,11 @@
 
       const img = document.createElement('img');
       img.src = art.filename;
-      img.alt = composeAlt(art);
+      img.alt = genericAlt();
       img.loading = 'lazy';
       img.decoding = 'async';
 
-      const cap = document.createElement('figcaption');
-      cap.className = 'figcap';
-      cap.textContent = composeCaption(art);
-
       fig.appendChild(img);
-      fig.appendChild(cap);
 
       fig.addEventListener('click', ()=> openLightboxById(art.id));
       fig.addEventListener('keypress', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openLightboxById(art.id); }});
@@ -205,16 +175,8 @@
     refreshReveals();
   }
 
-  function composeAlt(art){
-    const title = (art.title && (art.title[state.lang]||art.title.en||'')) || '';
-    return `${title || 'Artwork'} — ${art.year || ''}`.trim();
-  }
-
-  function composeCaption(art){
-    const title = (art.title && (art.title[state.lang]||art.title.en||'')) || '';
-    const medium = (art.medium && (art.medium[state.lang]||art.medium.en||'')) || '';
-    const bits = [title, art.year, medium].filter(Boolean);
-    return bits.join(' · ');
+  function genericAlt(){
+    return 'Artwork by Tatyana Zarapina';
   }
 
   function openLightboxById(id){
@@ -251,26 +213,8 @@
     const cap = $('#lb-caption');
     if (!img || !cap) return;
     img.src = art.filename;
-    img.alt = composeAlt(art);
-    cap.textContent = composeCaption(art);
-  }
-
-  async function onSubmitContact(e){
-    e.preventDefault();
-    const nameEl = $('#name');
-    const emailEl = $('#email');
-    const messageEl = $('#message');
-    const name = nameEl ? nameEl.value.trim() : '';
-    const email = emailEl ? emailEl.value.trim() : '';
-    const message = messageEl ? messageEl.value.trim() : '';
-
-    if(!name || !email || !message){
-      alert(t('contact.form.validation', 'Please fill in all fields.'));
-      return;
-    }
-    const subject = encodeURIComponent(t('contact.form.subject','Portfolio contact'));
-    const body = encodeURIComponent(`${t('contact.form.name','Name')}: ${name}\nEmail: ${email}\n\n${message}`);
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    img.alt = genericAlt();
+    cap.textContent = '';
   }
 
   // Reveal animations
@@ -283,7 +227,6 @@
         }
       });
     }, { threshold: 0.12 });
-    // Observe any static elements with .reveal present at load
     refreshReveals();
   }
 
