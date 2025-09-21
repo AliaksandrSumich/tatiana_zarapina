@@ -26,11 +26,7 @@
   },
   "about": {
     "title": "O mnie",
-    "bio": "<p>Nazywam się <strong>Tatyana Zarapina</strong>. Mieszkam i tworzę w Gdańsku. Zajmuję się malarstwem, grafiką i ilustracją, skupiając się na minimalnych formach i harmonii koloru.</p>",
-    "exhibitionsTitle": "Wystawy i osiągnięcia",
-    "exhibitions": "<ul><li>2024 — Wystawa zbiorowa, Gdańsk</li><li>2023 — Publikacja projektu autorskiego</li><li>2022 — Udział w lokalnym kiermaszu sztuki</li></ul>",
-    "educationTitle": "Edukacja",
-    "education": "<p>Kursy artystyczne i ciągła autodukacja. Otwartość na współprace i wystawy.</p>"
+    "bio": "<p>Nazywam się <strong>Tatyana Zarapina</strong>.</p><p>Prowadziłam zajęcia w dziecięcej pracowni w Doniecku i Berdiańsku. Doświadczenie jako artystka–dekoratorka: około 5 lat.</p><p>Mieszkam w Gdańsku. Uczę malarstwa dzieci i dorosłych.</p>"
   },
   "contact": {
     "title": "Kontakt",

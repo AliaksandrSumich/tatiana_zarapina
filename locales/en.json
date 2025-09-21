@@ -26,11 +26,7 @@
   },
   "about": {
     "title": "About",
-    "bio": "<p>My name is <strong>Tatyana Zarapina</strong>. I live and work in Gdańsk. I explore painting, graphics and illustration, focusing on minimal forms and color harmony.</p>",
-    "exhibitionsTitle": "Exhibitions & Achievements",
-    "exhibitions": "<ul><li>2024 — Group exhibition, Gdańsk</li><li>2023 — Personal project publication</li><li>2022 — Local art fair participation</li></ul>",
-    "educationTitle": "Education",
-    "education": "<p>Art courses and continuous self-education. Open to collaborations and exhibitions.</p>"
+    "bio": "<p>My name is <strong>Tatyana Zarapina</strong>.</p><p>I taught at a children's art studio in Donetsk and Berdyansk. About 5 years of experience as an art decorator.</p><p>I live in Gdańsk. I teach painting to children and adults.</p>"
   },
   "contact": {
     "title": "Contacts",
